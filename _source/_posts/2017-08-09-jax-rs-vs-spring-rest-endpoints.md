@@ -1,6 +1,6 @@
 ---
 layout: blog_post
-title: 'Let's Compare: JAX-RS vs Spring for REST Endpoints'
+title: "Let's Compare: JAX-RS vs Spring for REST Endpoints"
 author: bdemers
 tags: [spring, jaxrs, java, rest, stormtrooper]
 ---

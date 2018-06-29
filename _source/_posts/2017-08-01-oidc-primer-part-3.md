@@ -1,6 +1,6 @@
 ---
 layout: blog_post
-title: 'What's in a Token? – An OpenID Connect Primer, Part 3 of 3'
+title: "What's in a Token? – An OpenID Connect Primer, Part 3 of 3"
 author: dogeared
 tags: [oauth, oauth2, oauth2.0, oauth 2.0, OpenID, OpenID Connect, oidc]
 redirect_from:

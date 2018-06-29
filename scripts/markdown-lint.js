@@ -45,8 +45,9 @@ async function getFiles(dir) {
     fileMap[relative] = true;
     if (!file.includes('/_docs/api/postman/')
       && !file.includes('_sdk/')
-      && !file.includes('/_assets'
-      )) {
+      && !file.includes('/_assets')
+      && !file.includes('/.asset-cache')
+      ) {
       filesToCheck.push({ orig: file, relative });
     }
   }
