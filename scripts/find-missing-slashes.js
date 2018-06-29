@@ -86,7 +86,9 @@ function findBadLinks(file, fileMap) {
 async function run(dir) {
   const files = await getFiles(path.resolve(dir));
   const badFiles = [];
+  header(`Checking for missing trailing slashes (${__filename})`);
   header(`Found ${files.filesToCheck.length} files to check in ${dir}`);
+
   for (let file of files.filesToCheck) {
     const links = findBadLinks(file, files.fileMap);
     if (links.length > 0) {
@@ -122,6 +124,4 @@ For example, for '/blog', use either '/blog/' or '/blog/index.html'.
 }
 
 // Run ------------------------------------------------------------------------
-
-header(`Checking for missing trailing slashes (${__filename})`);
-run(path.resolve(__dirname, '../dist'));
+module.exports = run;
