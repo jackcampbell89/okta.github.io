@@ -206,7 +206,7 @@ Response
  "severity": "INFO",
  "version": "0",
  "outcome": {"result": "SUCCESS", "reason": null},
- "actor": {"id": "00u1ae58uup0y5Qkg1d8", "type": "User", 
+ "actor": {"id": "00u1ae58uup0y5Qkg1d8", "type": "User",
  "alternateId": "some.user@oktaprise.com", "displayName": "Some User",
  "detailEntry": null},
  "client": {"...": "...", "ipAddress": "208.223.254.3"},
@@ -226,7 +226,7 @@ Response
 }
 ~~~
 
-> A successful IdP-initiated Sign On into an app called “Workplace by Facebook”:
+> A successful IdP-initiated Sign On into an app called "Workplace by Facebook":
 
 Note the `target[1].alternateId` is different than the `actor.alternateId`
 

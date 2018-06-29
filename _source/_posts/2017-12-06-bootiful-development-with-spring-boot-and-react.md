@@ -2,20 +2,20 @@
 layout: blog_post
 title: 'Bootiful Development with Spring Boot and React'
 author: mraible
-description: "This post shows how you can build a UI and an API as separate apps. You’ll learn how to create REST endpoints with Spring MVC, configure Spring Boot to allow CORS, and create a React app to display its data. Finally, you'll lock it down with Okta."
+description: "This post shows how you can build a UI and an API as separate apps. You'll learn how to create REST endpoints with Spring MVC, configure Spring Boot to allow CORS, and create a React app to display its data. Finally, you'll lock it down with Okta."
 tags: [authentication, spring boot, react, okta, oidc]
-tweets: 
+tweets:
   - "Learn how to integrate @springboot and @reactjs in this tutorial from @mraible."
   - "Want to develop an application with @java on the backend and @reactjs on the front-end? This article is for you!"
 ---
 
-React has been getting a lot of positive press in the last couple years, making it an appealing frontend option for Java developers! Once you learn how it works, it makes a lot of sense and can be fun to develop with. Not only that, but it's *wicked fast!* If you’ve been following me, or if you've read this blog for a bit, you might remember my [Bootiful Development with Spring Boot and Angular](/blog/2017/04/26/bootiful-development-with-spring-boot-and-angular) tutorial. Today, I'll show you how to build the same application, except with React this time. Before we dive into that, let’s talk some more about what React is great for, and why I chose to explore it in this post.
+React has been getting a lot of positive press in the last couple years, making it an appealing frontend option for Java developers! Once you learn how it works, it makes a lot of sense and can be fun to develop with. Not only that, but it's *wicked fast!* If you've been following me, or if you've read this blog for a bit, you might remember my [Bootiful Development with Spring Boot and Angular](/blog/2017/04/26/bootiful-development-with-spring-boot-and-angular) tutorial. Today, I'll show you how to build the same application, except with React this time. Before we dive into that, let's talk some more about what React is great for, and why I chose to explore it in this post.
 
 First of all, React isn't a full-fledged web framework. It's more of a toolkit for developing UIs, a la GWT. If you want to make an HTTP request to fetch data from a server, React doesn't provide any utilities for that. However, it does have a *huge* ecosystem that offers many libraries and components. What do I mean by huge? Put it this way: According to npmjs.com, [Angular has 17,938 packages](https://www.npmjs.com/search?q=angular). React has almost [three times as many](https://www.npmjs.com/search?q=react) at 42,428!
 
 Angular is a good friend of mine and has been for a long time. I'm not abandoning my old friend to adopt React. I'm just making new friends. It's good for a human's perspective to have lots of friends with different backgrounds and opinions!
 
-This post shows how you can build a UI and an API as separate apps. You’ll learn how to create REST endpoints with Spring MVC, configure Spring Boot to allow CORS, and create a React app to display its data. This app will show a list of beers from the API, then fetch a GIF from [GIPHY](https://giphy.com/) that matches the beer’s name. I'll also show you how to integrate Okta and its OpenID Connect (OIDC) support to lock down your API and add authentication to your UI.
+This post shows how you can build a UI and an API as separate apps. You'll learn how to create REST endpoints with Spring MVC, configure Spring Boot to allow CORS, and create a React app to display its data. This app will show a list of beers from the API, then fetch a GIF from [GIPHY](https://giphy.com/) that matches the beer's name. I'll also show you how to integrate Okta and its OpenID Connect (OIDC) support to lock down your API and add authentication to your UI.
 
 Let's get started!
 
@@ -23,7 +23,7 @@ Let's get started!
 
 **NOTE:** The instructions below for building a Spring Boot API are the same as the ones in [Bootiful Development with Spring Boot and Angular](/blog/2017/04/26/bootiful-development-with-spring-boot-and-angular). I've copied them below for your convenience.
 
-To get started with Spring Boot, navigate to [start.spring.io](https://start.spring.io) and choose version 1.5.12+. In the “Search for dependencies" field, select the following:
+To get started with Spring Boot, navigate to [start.spring.io](https://start.spring.io) and choose version 1.5.12+. In the "Search for dependencies" field, select the following:
 
 * [H2](http://www.h2database.com/html/main.html): An in-memory database
 * [JPA](http://www.oracle.com/technetwork/java/javaee/tech/persistence-jsp-140049.html): Standard ORM for Java
@@ -41,7 +41,7 @@ dependencies==h2,data-jpa,data-rest,web -d
 
 Create a directory called `spring-boot-react-example`, with a `server` directory inside it. Expand the contents of `demo.zip` into the `server` directory.
 
-Open the “server" project in your favorite IDE and run `DemoApplication` or start it from the command line using `./mvnw spring-boot:run`.
+Open the "server" project in your favorite IDE and run `DemoApplication` or start it from the command line using `./mvnw spring-boot:run`.
 
 Create a `com.example.demo.beer` package and a `Beer.java` file in it. This class will be the entity that holds your data.
 
@@ -214,7 +214,7 @@ After this process runs, you will have a new `client` directory with all the nec
 
 {% img blog/react-spring-boot/react-welcome.png alt:"Welcome to React" width:"800" %}{: .center-image }
 
-Thus far, you’ve created a `good-beers` API and a React app, but you haven’t created the UI to display the list of beers from your API. To do this, open `client/src/App.tsx` and add a `componentDidMount()` method.
+Thus far, you've created a `good-beers` API and a React app, but you haven't created the UI to display the list of beers from your API. To do this, open `client/src/App.tsx` and add a `componentDidMount()` method.
 
 ```typescript
 componentDidMount() {
@@ -295,7 +295,7 @@ If you look at `http://localhost:3000` in your browser, you'll see a "Loading...
 Failed to load http://localhost:8080/good-beers: No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://localhost:3000' is therefore not allowed access.
 </pre>
 
-To fix this issue, you’ll need to configure Spring Boot to allow cross-domain access from `http://localhost:3000`.
+To fix this issue, you'll need to configure Spring Boot to allow cross-domain access from `http://localhost:3000`.
 
 ### Configure CORS for Spring Boot
 
@@ -403,7 +403,7 @@ export default App;
 
 ### Create a GiphyImage Component
 
-To make it look a little better, add a [GIPHY](http://giphy.com) component to fetch images based on the beer’s name. Create `client/src/GiphyImage.tsx` and place the following code inside it.
+To make it look a little better, add a [GIPHY](http://giphy.com) component to fetch images based on the beer's name. Create `client/src/GiphyImage.tsx` and place the following code inside it.
 
 ```typescript
 import * as React from 'react';
@@ -489,7 +489,7 @@ The result should look something like the following list of beer names with imag
 
 {% img blog/react-spring-boot/react-beer-list-giphy.png alt:"Beer list with Giphy images" width:"800" %}{: .center-image }
 
-You’ve just created a React app that talks to a Spring Boot API using cross-domain requests. Congratulations!
+You've just created a React app that talks to a Spring Boot API using cross-domain requests. Congratulations!
 
 ## Add PWA Support
 
@@ -518,7 +518,7 @@ I ran a [Lighthouse](https://developers.google.com/web/tools/lighthouse/) audit 
 
 {% img blog/react-spring-boot/lighthouse-first.png alt:"Lighthouse Score from first audit" width:"800" %}{: .center-image }
 
-You'll notice in the screenshot above that "Manifest does not have icons at least 512px". This one sounds easy enough to fix. You can download a 512-pixel free beer icon from [this page](https://www.flaticon.com/free-icon/beer_168557#term=beer&page=1&position=29). 
+You'll notice in the screenshot above that "Manifest does not have icons at least 512px". This one sounds easy enough to fix. You can download a 512-pixel free beer icon from [this page](https://www.flaticon.com/free-icon/beer_168557#term=beer&page=1&position=29).
 
 **NOTE:** This icon is made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>. It's licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>.
 
@@ -592,7 +592,7 @@ Now you need to configure the server to use Okta for authentication. You'll need
 
 ### Create an OIDC App in Okta
 
-Log in to your Okta Developer account (or [sign up](https://developer.okta.com/signup/) if you don’t have an account) and navigate to **Applications** > **Add Application**. Click **Single-Page App**, click **Next**, and give the app a name you’ll remember. Change all instances of `localhost:8080` to `localhost:3000` and click **Done**.
+Log in to your Okta Developer account (or [sign up](https://developer.okta.com/signup/) if you don't have an account) and navigate to **Applications** > **Add Application**. Click **Single-Page App**, click **Next**, and give the app a name you'll remember. Change all instances of `localhost:8080` to `localhost:3000` and click **Done**.
 
 Copy the client ID into your `server/src/main/resources/application.properties` file. While you're in there, add a `okta.oauth2.issuer` property that matches your Okta domain. For example:
 
@@ -939,7 +939,7 @@ git clone git@github.com:oktadeveloper/spring-boot-react-example.git
 git checkout okta
 ```
 
-If you find any issues, please add a comment below, and I'll do my best to help. If you liked this tutorial, I’d love to have you [follow me on Twitter](https://twitter.com/mraible). To be notified of more articles like this one, follow [@oktadev](https://twitter.com/oktadev).
+If you find any issues, please add a comment below, and I'll do my best to help. If you liked this tutorial, I'd love to have you [follow me on Twitter](https://twitter.com/mraible). To be notified of more articles like this one, follow [@oktadev](https://twitter.com/oktadev).
 
 **Changelog:**
 
