@@ -38,7 +38,7 @@ After you have created the application there are two more values you will need t
 | Setting       | Where to Find                                                                  |
 | ------------- | ------------------------------------------------------------------------------ |
 | Client ID     | In the applications list, or on the "General" tab of a specific application.   |
-| Org URL       | On the home screen of the developer dashboard, in the upper right.             |
+| Org URL       | On the home screen of the developer dashboard, in the upper right.  Note that your Okta domain does **not** include `-admin`. <br>Our docs replace a placeholder with your actual value when possible: `https://{yourOktaDomain}`.             |
 
 These values will be used in your React Native application to setup the OpenID Connect flow with Okta.
 
@@ -65,6 +65,7 @@ Assuming you're using an app created with `create-react-native-app`, modify your
 ```
 
 In your application's controller, create a new instance of the `TokenClient`:
+{% include domain-admin-warning.html %}
 
 ```javascript
 // App.js

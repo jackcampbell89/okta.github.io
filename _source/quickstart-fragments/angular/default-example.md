@@ -39,7 +39,7 @@ After you have created the application there are two more values you will need t
 | Setting       | Where to Find                                                                  |
 | ------------- | ------------------------------------------------------------------------------ |
 | Client ID     | In the applications list, or on the "General" tab of a specific application.   |
-| Org URL       | On the home screen of the developer dashboard, in the upper right.             |
+| Org URL       | On the home screen of the developer dashboard, in the upper right.  Note that your Okta domain does **not** include `-admin`. <br>Our docs replace a placeholder with your actual value when possible: `https://{yourOktaDomain}`.             |
 
 These values will be used in your Angular application to setup the OpenID Connect flow with Okta.
 
@@ -56,6 +56,7 @@ npm install @okta/okta-angular --save
 You will need the values from the OIDC client that you created in the previous step to instantiate the middleware. You will also need to know your Okta org URL, which you can see on the home page of the Okta Developer console.
 
 In your application's `module.ts` file, import the following objects and create a configuration object:
+{% include domain-admin-warning.html %}
 
 ```typescript
 // myApp.module.ts

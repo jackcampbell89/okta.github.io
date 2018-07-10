@@ -39,7 +39,7 @@ After you have created the application there are two more values you will need t
 | Setting       | Where to Find                                                                  |
 | ------------- | ------------------------------------------------------------------------------ |
 | Client ID     | In the applications list, or on the "General" tab of a specific application.    |
-| Org URL       | On the home screen of the developer dashboard, in the upper right.             |
+| Org URL       | On the home screen of the developer dashboard, in the upper right.  Note that your Okta domain does **not** include `-admin`. <br>Our docs replace a placeholder with your actual value when possible: `https://{yourOktaDomain}`.             |
 
 These values will be used in your React application to setup the OpenID Connect flow with Okta.
 
@@ -56,6 +56,7 @@ npm install @okta/okta-react --save
 You will need the values from the OIDC client that you created in the previous step to instantiate the middleware. You will also need to know your Okta org URL, which you can see on the home page of the Okta Developer console. Your Okta org URL + `oauth2/default` will be the `issuer` param.
 
 In your application's `App.js` file, import the following objects and pass in your configuration:
+{% include domain-admin-warning.html %}
 
 ```typescript
 import { Security, ImplicitCallback } from '@okta/okta-react';
@@ -65,7 +66,6 @@ const config = {
   redirect_uri: window.location.origin + '/implicit/callback',
   client_id: '{clientId}'
 }
-
 ```
 
 ## Attach Components to the Secure Router

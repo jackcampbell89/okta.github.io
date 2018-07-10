@@ -32,7 +32,7 @@ After you have created the application there are two more values you will need t
 | Setting       | Where to Find                                                                  |
 | ------------- | ------------------------------------------------------------------------------ |
 | Client ID     | In the applications list, or on the "General" tab of a specific application.    |
-| Org URL       | On the home screen of the developer dashboard, in the upper right.             |
+| Org URL       | On the home screen of the developer dashboard, in the upper right.  Note that your Okta domain does **not** include `-admin`. <br>Our docs replace a placeholder with your actual value when possible: `https://{yourOktaDomain}`.             |
 
 
 These values will be used in your iOS application to setup the OpenID Connect flow with Okta.
@@ -51,6 +51,8 @@ pod install && open project.xcworkspace
 
 ### Configuration
 Create a new `Okta.plist` file in your application's bundle with the following fields:
+{% include domain-admin-warning.html %}
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
