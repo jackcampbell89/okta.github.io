@@ -228,11 +228,17 @@
       url: clientContentUrl
     }).done(function( html ) {
       $('#client_content').html(html);
+
+      // Re-run domain replacement now that content has changed
+      window.reloadMyOktaIFrame();
     });
     $.ajax({
       url: serverContentUrl
     }).done(function (html) {
       $('#server_content').html( html );
+
+      // Re-run domain replacement now that content has changed
+      window.reloadMyOktaIFrame();
 
       // Set the framework to active
       document.getElementById('framework-' + framework).setAttribute('class', 'active');

@@ -1,15 +1,52 @@
 (function($) {
   $(function() {
+    // On DOM ready, create myOkta iframe and add listener once.
     var iframe = $('<iframe id="myOktaIFrame" src="https://login.okta.com" style="display:none"></iframe>');
-
     $('body').append(iframe);
-
-    $('#myOktaIFrame').load(function() {
-      iframe.get(0).contentWindow.postMessage({messageType: 'get_accounts_json'}, 'https://login.okta.com');
-    });
     window.addEventListener('message', receiveMessage, false);
+
+    var myOktaTimer;
+    sendMessage();
   });
 
+  /**
+   * Reload the iframe and send it a message.
+   * Globally available so that other contexts can reload when they want to.
+   */
+  window.reloadMyOktaIFrame = function() {
+    // Reload the iframe and bust cache by updating its source.
+    var now = new Date();
+    var myOktaSrc = "https://login.okta.com?docRetry=" + now.getTime();
+    $('#myOktaIFrame').attr("src", myOktaSrc);
+
+    sendMessage();
+  }
+
+  /**
+   * Once iframe has loaded, send it a message.
+   * Schedule a future check for success and retry if needed.
+   */
+  function sendMessage() {
+    $('#myOktaIFrame').on( 'load', function() {
+      iframe.get(0).contentWindow.postMessage({messageType: 'get_accounts_json'}, 'https://login.okta.com');
+    });
+
+    // Other contexts may be calling this mulitple times or before we've finished our setup.
+    // Make sure we only have one timer running.
+    if ( typeof myOktaTimer !== "undefined" ) {
+      clearTimeout(myOktaTimer);
+    }
+
+    myOktaTimer = setTimeout( function() {
+      if ( $('.okta-preview-domain').first().text() == 'https://{yourOktaDomain}' ) {
+        window.reloadMyOktaIFrame();
+      }
+    }, 60000);
+  }
+
+  /**
+   * Once we've received a message back, process it and do our replacement.
+   */
   function receiveMessage(event) {
     // Verify the event origin is trusted
     if (event.origin !== 'https://login.okta.com' || !event.data) {
